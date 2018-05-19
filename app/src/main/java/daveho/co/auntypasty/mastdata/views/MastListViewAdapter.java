@@ -33,7 +33,20 @@ public class MastListViewAdapter extends RecyclerView.Adapter<MastListViewAdapte
 
     @Override
     public void onBindViewHolder(MastViewHolder holder, int position) {
-        // We're not doing anything here yet.
+
+        MastDataItem mastDataItem = mMastList.get(position);
+
+        holder.nameView.setText(mastDataItem.getPropertyName());
+        holder.address1View.setText(mastDataItem.getAddress1());
+        holder.address2View.setText(mastDataItem.getAddress2());
+        holder.address3View.setText(mastDataItem.getAddress3());
+        holder.address4View.setText(mastDataItem.getAddress4());
+        holder.unitNameView.setText(mastDataItem.getUnitName());
+        holder.tenantNameView.setText(mastDataItem.getTenantName());
+        holder.leaseStartView.setText(mastDataItem.getLeaseStart());
+        holder.leaseEndView.setText(mastDataItem.getLeaseEnd());
+        holder.leaseYearsView.setText(mastDataItem.getLeaseYears());
+        holder.rentView.setText(mastDataItem.getCurrentRent());
     }
 
     @Override

@@ -12,6 +12,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import daveho.co.auntypasty.mastdata.MastCsvParser;
+import daveho.co.auntypasty.mastdata.MastDataPresenter;
 import daveho.co.auntypasty.mastdata.R;
 import daveho.co.auntypasty.mastdata.models.MastDataItem;
 
@@ -20,34 +22,40 @@ public class MastListFragment extends Fragment implements MastListView {
     protected RecyclerView recyclerView;
     protected LinearLayoutManager linearLayoutManager;
     private MastListViewAdapter mMastListViewAdapter;
-    private ArrayList<MastDataItem> mMastist = new ArrayList<>();
+    private ArrayList<MastDataItem> mMastList = new ArrayList<>();
+
+    private MastDataPresenter mMastDataPresenter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.mast_list_fragment, container, false);
-        TextView textView = v.findViewById(R.id.section_label);
-        textView.setText(getString(R.string.section_format, 1));
 
         recyclerView = v.findViewById(R.id.list);
-        recyclerView.setHasFixedSize(true);
+        recyclerView.setHasFixedSize(false);
 
-        linearLayoutManager = new LinearLayoutManager(getActivity());
+        linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
 
         if (mMastListViewAdapter == null) {
-            mMastListViewAdapter = new MastListViewAdapter(mMastist);
+            mMastListViewAdapter = new MastListViewAdapter(mMastList);
         }
         recyclerView.setAdapter(mMastListViewAdapter);
 
+        mMastDataPresenter = new MastDataPresenter(getActivity(), this, null, null);
+
+        MastCsvParser mastCsvParser = new MastCsvParser(getActivity());
+        List<String[]> csvList = mastCsvParser.parseCsvFile();
+
+        mMastDataPresenter.getListFromDataFile(csvList);
 
         return v;
     }
 
     @Override
-    public void showTop5MastList(List<MastDataItem> list) {
-        mMastist = new ArrayList<>(list);
+    public void showTop5MastList(ArrayList<MastDataItem> list) {
+        mMastList = list;
         mMastListViewAdapter.notifyDataSetChanged();
 
     }

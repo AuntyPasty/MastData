@@ -9,10 +9,10 @@ public class MastDataItem {
     private String address4;
     private String unitName;
     private String tenantName;
-    private int leaseStart;
-    private int leaseEnd;
-    private int leaseYears;
-    private float currentRent;
+    private String leaseStart;
+    private String leaseEnd;
+    private String leaseYears;
+    private String currentRent;
 
     public String getPropertyName() {
         return propertyName;
@@ -70,35 +70,35 @@ public class MastDataItem {
         this.tenantName = tenantName;
     }
 
-    public int getLeaseStart() {
+    public String getLeaseStart() {
         return leaseStart;
     }
 
-    public void setLeaseStart(int leaseStart) {
+    public void setLeaseStart(String leaseStart) {
         this.leaseStart = leaseStart;
     }
 
-    public int getLeaseEnd() {
+    public String getLeaseEnd() {
         return leaseEnd;
     }
 
-    public void setLeaseEnd(int leaseEnd) {
+    public void setLeaseEnd(String leaseEnd) {
         this.leaseEnd = leaseEnd;
     }
 
-    public int getLeaseYears() {
+    public String getLeaseYears() {
         return leaseYears;
     }
 
-    public void setLeaseYears(int leaseYears) {
+    public void setLeaseYears(String leaseYears) {
         this.leaseYears = leaseYears;
     }
 
-    public float getCurrentRent() {
+    public String getCurrentRent() {
         return currentRent;
     }
 
-    public void setCurrentRent(float currentRent) {
+    public void setCurrentRent(String currentRent) {
         this.currentRent = currentRent;
     }
 }

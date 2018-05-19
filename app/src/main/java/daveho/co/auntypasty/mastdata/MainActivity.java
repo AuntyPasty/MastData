@@ -16,7 +16,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import java.util.List;
+
+import daveho.co.auntypasty.mastdata.models.MastDataItem;
 import daveho.co.auntypasty.mastdata.views.MastListFragment;
+import daveho.co.auntypasty.mastdata.views.MastListView;
 import daveho.co.auntypasty.mastdata.views.RentalsFragment;
 import daveho.co.auntypasty.mastdata.views.TenantsFragment;
 
@@ -37,6 +41,12 @@ public class MainActivity extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+
+    private MastListFragment mMastListFragment;
+    private RentalsFragment mRentalsFragment;
+    private TenantsFragment mTenantsFragment;
+
+    private MastDataPresenter mMastDataPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,9 +76,6 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-
-        // Kick off the initial list data gathering
-        
     }
 
 

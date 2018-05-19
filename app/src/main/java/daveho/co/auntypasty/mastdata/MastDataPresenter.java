@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import daveho.co.auntypasty.mastdata.models.MastDataItem;
+import daveho.co.auntypasty.mastdata.views.MastListFragment;
 import daveho.co.auntypasty.mastdata.views.MastListView;
 import daveho.co.auntypasty.mastdata.views.RentalsView;
 import daveho.co.auntypasty.mastdata.views.TenantsView;
@@ -21,7 +22,7 @@ public class MastDataPresenter {
     RentalsView mRentalsView;
     TenantsView mTenantsView;
     
-    public MastDataPresenter(Context context, MastListView mastListView, RentalsView rentalsView, TenantsView tenantsView) {
+    public MastDataPresenter(Context context, MastListFragment mastListView, RentalsView rentalsView, TenantsView tenantsView) {
         this.mContext = context;
         this.mMastListView = mastListView;
         this.mRentalsView = rentalsView;
@@ -43,10 +44,10 @@ public class MastDataPresenter {
                 item.setAddress4(line[4]);
                 item.setUnitName(line[5]);
                 item.setTenantName(line[6]);
-                item.setLeaseStart(Integer.parseInt(line[7]));
-                item.setLeaseEnd(Integer.parseInt(line[8]));
-                item.setLeaseYears(Integer.parseInt(line[9]));
-                item.setCurrentRent(Integer.parseInt(line[10]));
+                item.setLeaseStart(line[7]);
+                item.setLeaseEnd(line[8]);
+                item.setLeaseYears(line[9]);
+                item.setCurrentRent(line[10]);
 
                 mMastDataItemList.add(item);
             }
