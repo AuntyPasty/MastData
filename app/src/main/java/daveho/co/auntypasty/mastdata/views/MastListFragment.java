@@ -32,14 +32,15 @@ public class MastListFragment extends Fragment implements MastListView {
         View v = inflater.inflate(R.layout.mast_list_fragment, container, false);
 
         recyclerView = v.findViewById(R.id.list);
-        recyclerView.setHasFixedSize(false);
+        //recyclerView.setHasFixedSize(true);
+        recyclerView.addItemDecoration(new ListDividerItemDecoration(getActivity()));
 
-        linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
 
         if (mMastListViewAdapter == null) {
-            mMastListViewAdapter = new MastListViewAdapter(mMastList);
+            mMastListViewAdapter = new MastListViewAdapter(getActivity(), mMastList);
         }
         recyclerView.setAdapter(mMastListViewAdapter);
 
@@ -55,7 +56,12 @@ public class MastListFragment extends Fragment implements MastListView {
 
     @Override
     public void showTop5MastList(ArrayList<MastDataItem> list) {
-        mMastList = list;
+
+        mMastList.clear();
+        // We only want to show the first 5 items. We assume the list has been sorted
+        for (int i = 0; i < 5; i++) {
+            mMastList.add(list.get(i));
+        }
         mMastListViewAdapter.notifyDataSetChanged();
 
     }

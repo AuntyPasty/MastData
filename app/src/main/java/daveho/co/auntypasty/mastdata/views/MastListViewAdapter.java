@@ -1,5 +1,6 @@
 package daveho.co.auntypasty.mastdata.views;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,15 +17,17 @@ public class MastListViewAdapter extends RecyclerView.Adapter<MastListViewAdapte
 
     private MastViewHolder mMastViewHolder;
     private List<MastDataItem> mMastList;
+    private Context mContext;
 
-    public MastListViewAdapter(List<MastDataItem> mMastList) {
+    public MastListViewAdapter(Context context, List<MastDataItem> mMastList) {
         this.mMastList = mMastList;
+        this.mContext = context;
     }
 
     @Override
     public MastViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.mast_item, parent, false);
+        final View view = LayoutInflater.from(mContext).inflate(R.layout.mast_item, parent, false);
 
         mMastViewHolder = new MastViewHolder(view);
 
@@ -55,7 +58,7 @@ public class MastListViewAdapter extends RecyclerView.Adapter<MastListViewAdapte
         return mMastList.size();
     }
 
-    static class MastViewHolder extends RecyclerView.ViewHolder {
+    public static class MastViewHolder extends RecyclerView.ViewHolder {
 
         TextView nameView;
         TextView address1View;
