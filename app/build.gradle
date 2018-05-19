@@ -25,8 +25,10 @@ dependencies {
             'com.android.support:appcompat-v7:26.1.0',
             'com.android.support:design:26.1.0',
             'com.android.support.constraint:constraint-layout:1.1.0',
+            'com.android.support:recyclerview-v7:26.1.0',
             'io.reactivex.rxjava2:rxjava:2.1.5',
-            'io.reactivex.rxjava2:rxandroid:2.0.1'
+            'io.reactivex.rxjava2:rxandroid:2.0.1',
+            'com.opencsv:opencsv:3.9'
     )
 
     testImplementation (
