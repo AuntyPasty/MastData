@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,8 +20,15 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+import java.util.Locale;
+
+import daveho.co.auntypasty.mastdata.views.MastListFragment;
+import daveho.co.auntypasty.mastdata.views.RentalsFragment;
+import daveho.co.auntypasty.mastdata.views.TenantsFragment;
+
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = MainActivity.class.getSimpleName();
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -139,7 +147,23 @@ public class MainActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+//            return PlaceholderFragment.newInstance(position + 1);
+            Fragment fragment;
+
+            if (position == 0) {
+                fragment = new MastListFragment();
+            } else if (position == 1) {
+                fragment = new TenantsFragment();
+            } else if (position == 2) {
+                fragment = new RentalsFragment();
+            }
+            else {
+                // TODO Should never get here but maybe show snackbar error if have time.
+                Log.d(TAG, "Page Out of range.");
+                fragment = new MastListFragment();
+            }
+
+            return fragment;
         }
 
         @Override
