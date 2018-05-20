@@ -7,15 +7,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import daveho.co.auntypasty.mastdata.MastCsvParser;
 import daveho.co.auntypasty.mastdata.MastDataPresenter;
 import daveho.co.auntypasty.mastdata.R;
 import daveho.co.auntypasty.mastdata.models.MastDataItem;
+
+import static daveho.co.auntypasty.mastdata.modules.ApplicationModule.applicationContext;
+import static daveho.co.auntypasty.mastdata.modules.MastDataRepositoryModule.mastDataRepository;
 
 public class MastListFragment extends Fragment implements MastListView {
 
@@ -44,12 +44,9 @@ public class MastListFragment extends Fragment implements MastListView {
         }
         recyclerView.setAdapter(mMastListViewAdapter);
 
-        mMastDataPresenter = new MastDataPresenter(getActivity(), this, null, null);
+        mMastDataPresenter = new MastDataPresenter(applicationContext(), this, mastDataRepository());
 
-        MastCsvParser mastCsvParser = new MastCsvParser(getActivity());
-        List<String[]> csvList = mastCsvParser.parseCsvFile();
-
-        mMastDataPresenter.getListFromDataFile(csvList);
+        mMastDataPresenter.getMastListFromStorageToShow();
 
         return v;
     }

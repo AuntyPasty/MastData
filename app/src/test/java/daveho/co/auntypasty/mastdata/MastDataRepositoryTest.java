@@ -6,8 +6,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
@@ -15,20 +13,17 @@ import org.robolectric.annotation.Config;
 import java.util.ArrayList;
 import java.util.List;
 
-import daveho.co.auntypasty.mastdata.views.MastListFragment;
-import daveho.co.auntypasty.mastdata.views.RentalsView;
-import daveho.co.auntypasty.mastdata.views.TenantsView;
+import daveho.co.auntypasty.mastdata.models.MastDataItem;
+import daveho.co.auntypasty.mastdata.repository.MastDataRepository;
 
-import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.verify;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(RobolectricTestRunner.class)
 @Config(manifest=Config.NONE)
-public class MastDataPresenterTest {
+public class MastDataRepositoryTest {
 
+    MastDataRepository sut;
     Context mContext;
-
-    MastDataPresenter sut;
 
     List<String[]> testData = new ArrayList();
     String[] testLine1 = {"Property name", "Address 1", "Address 2", "Address 3", "Address 4",
@@ -40,20 +35,11 @@ public class MastDataPresenterTest {
     String[] testLine3 = {"test2 Property name", "test2 Address 1", "test2 Address 2", "test2 Address 3", "test2 Address 4",
             "test2 Unit Name", "test2 Tenant Name", "test2 Lease Start Data", "test2 Lease End Data", "test2 Lease Years", "test2 Current Rent"};
 
-    @Mock
-    private MastListFragment mockMastListView;
-
-    @Mock
-    private TenantsView mockTenantsView;
-
-    @Mock
-    private RentalsView mockRentalsView;
-
     @Before
     public void setup() throws Exception {
-        MockitoAnnotations.initMocks(this);
+
         mContext = RuntimeEnvironment.application.getApplicationContext();
-        sut = new MastDataPresenter(mContext, mockMastListView);
+        sut = new MastDataRepository(mContext);
 
         testData.add(testLine1);
         testData.add(testLine2);
@@ -68,8 +54,14 @@ public class MastDataPresenterTest {
 
     @Test
     public void getListShouldReturnListOfObjects() {
-        sut.getMastListFromStorageToShow();
+        ArrayList<MastDataItem> result = sut.getListFromDataFile(testData);
 
-        //verify(mockMastListView).showTop5MastList(An);
+        assertThat(result).isNotEmpty();
+
+        // We remove the first line from the array so expected is 2 rather than 3.
+        assertThat(result.size()).isEqualTo(2);
     }
+
+
+
 }

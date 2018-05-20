@@ -12,6 +12,8 @@ import org.robolectric.annotation.Config;
 
 import java.util.List;
 
+import daveho.co.auntypasty.mastdata.repository.MastCsvParser;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(RobolectricTestRunner.class)

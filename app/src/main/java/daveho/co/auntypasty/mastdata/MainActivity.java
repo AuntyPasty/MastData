@@ -19,6 +19,7 @@ import android.view.View;
 import java.util.List;
 
 import daveho.co.auntypasty.mastdata.models.MastDataItem;
+import daveho.co.auntypasty.mastdata.modules.ApplicationModule;
 import daveho.co.auntypasty.mastdata.views.MastListFragment;
 import daveho.co.auntypasty.mastdata.views.MastListView;
 import daveho.co.auntypasty.mastdata.views.RentalsFragment;
@@ -51,6 +52,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        ApplicationModule.init(getApplication());
+
         setContentView(R.layout.activity_main);
 
         Toolbar toolbar = findViewById(R.id.toolbar);

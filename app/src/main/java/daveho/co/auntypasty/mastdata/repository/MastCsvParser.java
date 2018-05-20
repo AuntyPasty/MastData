@@ -1,4 +1,4 @@
-package daveho.co.auntypasty.mastdata;
+package daveho.co.auntypasty.mastdata.repository;
 
 import android.content.Context;
 import android.content.res.AssetManager;
