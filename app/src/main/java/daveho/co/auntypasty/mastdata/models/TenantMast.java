@@ -1,6 +1,6 @@
 package daveho.co.auntypasty.mastdata.models;
 
-public class TenantMastCount {
+public class TenantMast {
 
     private String tenantName;
     private int mastCount;

@@ -15,12 +15,12 @@ import org.robolectric.annotation.Config;
 import java.util.ArrayList;
 import java.util.List;
 
+import daveho.co.auntypasty.mastdata.models.MastDataItem;
+import daveho.co.auntypasty.mastdata.repository.MastDataRepository;
 import daveho.co.auntypasty.mastdata.views.MastListFragment;
 import daveho.co.auntypasty.mastdata.views.RentalsView;
 import daveho.co.auntypasty.mastdata.views.TenantsView;
 
-import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.verify;
 
 @RunWith(RobolectricTestRunner.class)
 @Config(manifest=Config.NONE)
@@ -49,11 +49,14 @@ public class MastDataPresenterTest {
     @Mock
     private RentalsView mockRentalsView;
 
+    @Mock
+    private MastDataRepository mockMastRepository;
+
     @Before
     public void setup() throws Exception {
         MockitoAnnotations.initMocks(this);
         mContext = RuntimeEnvironment.application.getApplicationContext();
-        sut = new MastDataPresenter(mContext, mockMastListView);
+        sut = new MastDataPresenter(mContext, mockMastListView, mockMastRepository);
 
         testData.add(testLine1);
         testData.add(testLine2);
@@ -70,6 +73,6 @@ public class MastDataPresenterTest {
     public void getListShouldReturnListOfObjects() {
         sut.getMastListFromStorageToShow();
 
-        //verify(mockMastListView).showTop5MastList(An);
+      //  verify(mockMastListView, times(1)).showTop5MastList(anyListOf(MastDataItem.class));
     }
 }
