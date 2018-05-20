@@ -25,6 +25,8 @@ after a new entry has been submitted.
 Unit tests are JUnit tests using RoboElectric and Mockito. The testing was ok but coverage could
 be better. There should be more test cases for boundary conditions.
 
+For time reasons, strings.xml is not usually used. Most text strings are coded where used.
+
 From reading the test description, there are a few areas which may be open to interpretation.
 From the given requirements I have made the following assumptions:
 

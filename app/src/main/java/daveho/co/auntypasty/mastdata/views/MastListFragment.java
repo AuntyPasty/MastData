@@ -90,11 +90,10 @@ public class MastListFragment extends Fragment implements MastListView {
         mMastList.addAll(list);
 
         mMastListViewAdapter.notifyDataSetChanged();
-
     }
 
     @Override
     public void showTotalRent(float rent) {
-        rentView.setText(Float.toString(rent));
+        rentView.setText("Total Rent: " + Float.toString(rent));
     }
 }
