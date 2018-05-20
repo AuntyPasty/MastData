@@ -22,21 +22,22 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Config(manifest=Config.NONE)
 public class MastDataRepositoryTest {
 
-    MastDataRepository sut;
-    Context mContext;
+    private MastDataRepository sut;
+    private Context mContext;
 
-    List<String[]> testData = new ArrayList();
-    String[] testLine1 = {"Property name", "Address 1", "Address 2", "Address 3", "Address 4",
+    private List<String[]> testData = new ArrayList<>();
+
+    private String[] testLine1 = {"Property name", "Address 1", "Address 2", "Address 3", "Address 4",
             "Unit Name", "Tenant Name", "Lease Start Data", "Lease End Data", "Lease Years", "Current Rent"};
 
-    String[] testLine2 = {"test1 Property name", "Test1 Address line 1", "test1 Address 2 ", "test1 Address 3", "test1 Address 4",
+    private String[] testLine2 = {"test1 Property name", "Test1 Address line 1", "test1 Address 2 ", "test1 Address 3", "test1 Address 4",
             "test1 Unit Name", "test1 Tenant Name", "test1 Lease Start Data", "test1 Lease End Data", "test1 Lease Years", "test1 Current Rent"};
 
-    String[] testLine3 = {"test2 Property name", "test2 Address 1", "test2 Address 2", "test2 Address 3", "test2 Address 4",
+    private String[] testLine3 = {"test2 Property name", "test2 Address 1", "test2 Address 2", "test2 Address 3", "test2 Address 4",
             "test2 Unit Name", "test2 Tenant Name", "test2 Lease Start Data", "test2 Lease End Data", "test2 Lease Years", "test2 Current Rent"};
 
     @Before
-    public void setup() throws Exception {
+    public void setup() {
 
         mContext = RuntimeEnvironment.application.getApplicationContext();
         sut = new MastDataRepository(mContext);
@@ -47,7 +48,7 @@ public class MastDataRepositoryTest {
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown()  {
         sut = null;
         testData.clear();
     }

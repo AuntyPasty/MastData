@@ -12,8 +12,10 @@ import java.util.List;
 import daveho.co.auntypasty.mastdata.R;
 import daveho.co.auntypasty.mastdata.models.MastDataItem;
 
+/**
+ * List Adapter for the MastDataItem
+ */
 public class MastListViewAdapter extends RecyclerView.Adapter<MastListViewAdapter.MastViewHolder> {
-
 
     private MastViewHolder mMastViewHolder;
     private List<MastDataItem> mMastList;

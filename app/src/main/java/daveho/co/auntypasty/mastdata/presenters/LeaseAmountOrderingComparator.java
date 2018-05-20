@@ -4,6 +4,9 @@ import java.util.Comparator;
 
 import daveho.co.auntypasty.mastdata.models.MastDataItem;
 
+/**
+ * Comparator to allow MastDataItem objects to be sorted according to their rent values.
+ */
 public class LeaseAmountOrderingComparator implements Comparator<MastDataItem> {
 
     @Override

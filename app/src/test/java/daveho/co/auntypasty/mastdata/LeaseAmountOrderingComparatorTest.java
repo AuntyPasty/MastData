@@ -19,20 +19,20 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Config(manifest=Config.NONE)
 public class LeaseAmountOrderingComparatorTest {
 
-    MastDataItem testItem1 = new MastDataItem();
-    MastDataItem testItem2 = new MastDataItem();
-    MastDataItem testItem3 = new MastDataItem();
-    MastDataItem testItem4 = new MastDataItem();
-    MastDataItem testItem5 = new MastDataItem();
-    MastDataItem testItem6 = new MastDataItem();
-    MastDataItem testItem7 = new MastDataItem();
+    private MastDataItem testItem1 = new MastDataItem();
+    private MastDataItem testItem2 = new MastDataItem();
+    private MastDataItem testItem3 = new MastDataItem();
+    private MastDataItem testItem4 = new MastDataItem();
+    private MastDataItem testItem5 = new MastDataItem();
+    private MastDataItem testItem6 = new MastDataItem();
+    private MastDataItem testItem7 = new MastDataItem();
 
-    ArrayList<MastDataItem> testList = new ArrayList<>();
+    private ArrayList<MastDataItem> testList = new ArrayList<>();
 
-    LeaseAmountOrderingComparator sut;
+    private LeaseAmountOrderingComparator sut;
 
     @Before
-    public void setup() throws Exception {
+    public void setup() {
         sut = new LeaseAmountOrderingComparator();
 
         testItem1.setCurrentRent("2.2");
@@ -53,7 +53,7 @@ public class LeaseAmountOrderingComparatorTest {
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
         sut = null;
         testList.clear();
     }

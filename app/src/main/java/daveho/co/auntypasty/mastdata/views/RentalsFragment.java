@@ -19,6 +19,9 @@ import daveho.co.auntypasty.mastdata.presenters.RentalsPresenter;
 import static daveho.co.auntypasty.mastdata.modules.ApplicationModule.applicationContext;
 import static daveho.co.auntypasty.mastdata.modules.MastDataRepositoryModule.mastDataRepository;
 
+/**
+ * Fragment to show the list of items within the required date range
+ */
 public class RentalsFragment extends Fragment implements RentalsView {
 
     protected RecyclerView recyclerView;
@@ -60,7 +63,7 @@ public class RentalsFragment extends Fragment implements RentalsView {
     }
 
     @Override
-    public void showItemsInGivenDaterange(ArrayList<MastDataItem> list) {
+    public void showItemsInGivenDateRange(ArrayList<MastDataItem> list) {
         mMastList.clear();
         mMastList.addAll(list);
 

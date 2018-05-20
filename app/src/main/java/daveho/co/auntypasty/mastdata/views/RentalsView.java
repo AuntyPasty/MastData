@@ -6,5 +6,5 @@ import daveho.co.auntypasty.mastdata.models.MastDataItem;
 
 public interface RentalsView {
 
-    void showItemsInGivenDaterange(ArrayList<MastDataItem> list);
+    void showItemsInGivenDateRange(ArrayList<MastDataItem> list);
 }

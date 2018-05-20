@@ -19,6 +19,11 @@ import daveho.co.auntypasty.mastdata.models.MastDataItem;
 import static daveho.co.auntypasty.mastdata.modules.ApplicationModule.applicationContext;
 import static daveho.co.auntypasty.mastdata.modules.MastDataRepositoryModule.mastDataRepository;
 
+/**
+ * Fragment to display the main mast data list. Only the top 5
+ * items are required. Also displays teh total rent of the top five items and a
+ * toggle button to change the ordering of the list
+ */
 public class MastListFragment extends Fragment implements MastListView {
 
     protected RecyclerView recyclerView;

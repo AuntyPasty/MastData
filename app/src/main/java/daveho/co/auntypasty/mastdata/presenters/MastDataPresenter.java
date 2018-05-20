@@ -10,36 +10,43 @@ import daveho.co.auntypasty.mastdata.repository.MastDataRepository;
 import daveho.co.auntypasty.mastdata.views.MastListFragment;
 import daveho.co.auntypasty.mastdata.views.MastListView;
 
+/**
+ * Presenter for managing the lists of mast data items
+ */
 public class MastDataPresenter {
 
     private static final String TAG = MastDataPresenter.class.getSimpleName();
 
-    Context mContext;
-    MastListView mMastListView;
-    MastDataRepository mMastDataRepository;
+    private Context mContext;
+    private MastListView mMastListView;
+    private MastDataRepository mMastDataRepository;
 
-    ArrayList<MastDataItem> mShortMastList = new ArrayList<>();
+    private ArrayList<MastDataItem> mShortMastList = new ArrayList<>();
 
-    
     public MastDataPresenter(Context context, MastListFragment mastListView, MastDataRepository mastDataRepository) {
         this.mContext = context;
         this.mMastListView = mastListView;
         this.mMastDataRepository = mastDataRepository;
     }
-    
+
+    /**
+     * Retrieves list from the repository
+     * Shortens the list and passes the list to the view
+     * Gets the rent data and passes it to the view
+     */
     public void getMastListFromStorageToShow() {
 
         ArrayList<MastDataItem> mastList = mMastDataRepository.getMastDataList();
 
         mMastListView.showTop5MastList(getTopFiveFromList(mastList));
 
-        // This needs tobe called after the top 5 list has been created.
+        // This needs to be called after the top 5 list has been created.
         mMastListView.showTotalRent(getTotalRentFromList(mShortMastList));
     }
 
     /**
      * With a given raw list, it sorts it in ascending rent order then takes the first 5 as a short list
-     * @param rawList
+     * @param rawList the unsorted data
      * @return top five short list
      */
     public ArrayList<MastDataItem> getTopFiveFromList(ArrayList<MastDataItem> rawList) {
@@ -58,21 +65,27 @@ public class MastDataPresenter {
         return mShortMastList;
     }
 
+    /**
+     * Sorts the short top 5 list by Rent, either ascending or descending
+     * @param ascending boolean whether to sort ascending or not.
+     */
     public void getSortedShortList(boolean ascending) {
 
         if (!mShortMastList.isEmpty()) {
-            if (ascending) {
-                Collections.sort(mShortMastList, new LeaseAmountOrderingComparator());
-            } else {
-                Collections.sort(mShortMastList, new LeaseAmountOrderingComparator());
+            Collections.sort(mShortMastList, new LeaseAmountOrderingComparator());
+
+            if (!ascending) {
                 Collections.reverse(mShortMastList);
             }
             mMastListView.showTop5MastList(mShortMastList);
         }
-
-
     }
 
+    /**
+     * Iterates through the given list and sums the rent values
+     * @param shortList the list to iterate
+     * @return total rent value
+     */
     public float getTotalRentFromList(ArrayList<MastDataItem> shortList) {
 
         if (!shortList.isEmpty()) {
@@ -88,6 +101,4 @@ public class MastDataPresenter {
 
         return 0;
     }
-
-
 }

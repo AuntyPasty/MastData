@@ -12,9 +12,12 @@ import java.util.List;
 import daveho.co.auntypasty.mastdata.R;
 import daveho.co.auntypasty.mastdata.models.TenantMast;
 
+/**
+ * List Adapter for showing the tenants and the mast Count
+ */
 public class TenantsListViewAdapter extends RecyclerView.Adapter<TenantsListViewAdapter.TenantsViewHolder> {
 
-    private  TenantsViewHolder mTenantsViewHolder;
+    private TenantsViewHolder mTenantsViewHolder;
     private List<TenantMast> mTenantList;
     private Context mContext;
 

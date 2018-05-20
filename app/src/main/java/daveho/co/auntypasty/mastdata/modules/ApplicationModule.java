@@ -3,6 +3,9 @@ package daveho.co.auntypasty.mastdata.modules;
 import android.app.Application;
 import android.content.Context;
 
+/**
+ * Allows the application Context to be retrieved from other areas of code.
+ */
 public class ApplicationModule {
 
     private static Context mAppContext;

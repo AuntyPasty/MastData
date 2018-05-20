@@ -1,5 +1,8 @@
 package daveho.co.auntypasty.mastdata.models;
 
+/**
+ * Model for a mast data item
+ */
 public class MastDataItem {
 
     private String propertyName;

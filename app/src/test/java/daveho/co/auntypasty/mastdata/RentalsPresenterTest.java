@@ -26,25 +26,25 @@ import static org.mockito.Mockito.when;
 @Config(manifest=Config.NONE)
 public class RentalsPresenterTest {
 
-    Context mContext;
-    RentalsPresenter sut;
+    private Context mContext;
+    private RentalsPresenter sut;
 
-    MastDataItem testItem1 = new MastDataItem();
-    MastDataItem testItem2 = new MastDataItem();
-    MastDataItem testItem3 = new MastDataItem();
-    MastDataItem testItem4 = new MastDataItem();
-    MastDataItem testItem5 = new MastDataItem();
+    private MastDataItem testItem1 = new MastDataItem();
+    private MastDataItem testItem2 = new MastDataItem();
+    private MastDataItem testItem3 = new MastDataItem();
+    private MastDataItem testItem4 = new MastDataItem();
+    private MastDataItem testItem5 = new MastDataItem();
 
-    ArrayList<MastDataItem> testList = new ArrayList<>();
+    private ArrayList<MastDataItem> testList = new ArrayList<>();
 
     @Mock
-    RentalsView mockView;
+    private RentalsView mockView;
 
     @Mock
     private MastDataRepository mockMastRepository;
 
     @Before
-    public void setup() throws Exception {
+    public void setup() {
         MockitoAnnotations.initMocks(this);
 
         mContext = RuntimeEnvironment.application.getApplicationContext();
@@ -53,7 +53,7 @@ public class RentalsPresenterTest {
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
         sut = null;
         testList.clear();
     }

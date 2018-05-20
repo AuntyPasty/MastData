@@ -15,6 +15,10 @@ import daveho.co.auntypasty.mastdata.R;
 import daveho.co.auntypasty.mastdata.models.MastDataItem;
 import io.reactivex.annotations.Nullable;
 
+/**
+ * Dialog fragment which appears when the FAB is pressed. It is used to
+ * submit data for a new mast.
+ */
 public class NewMastDataFragment extends DialogFragment {
 
     private EditText nameEdit;

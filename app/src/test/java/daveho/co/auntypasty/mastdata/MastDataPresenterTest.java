@@ -28,19 +28,19 @@ import static org.mockito.Mockito.when;
 @Config(manifest=Config.NONE)
 public class MastDataPresenterTest {
 
-    Context mContext;
+    private Context mContext;
 
-    MastDataPresenter sut;
+    private MastDataPresenter sut;
 
-    MastDataItem testItem1 = new MastDataItem();
-    MastDataItem testItem2 = new MastDataItem();
-    MastDataItem testItem3 = new MastDataItem();
-    MastDataItem testItem4 = new MastDataItem();
-    MastDataItem testItem5 = new MastDataItem();
-    MastDataItem testItem6 = new MastDataItem();
-    MastDataItem testItem7 = new MastDataItem();
+    private MastDataItem testItem1 = new MastDataItem();
+    private MastDataItem testItem2 = new MastDataItem();
+    private MastDataItem testItem3 = new MastDataItem();
+    private MastDataItem testItem4 = new MastDataItem();
+    private MastDataItem testItem5 = new MastDataItem();
+    private MastDataItem testItem6 = new MastDataItem();
+    private MastDataItem testItem7 = new MastDataItem();
 
-    ArrayList<MastDataItem> testList = new ArrayList<>();
+    private ArrayList<MastDataItem> testList = new ArrayList<>();
 
     @Mock
     private MastListFragment mockMastListView;
@@ -49,7 +49,7 @@ public class MastDataPresenterTest {
     private MastDataRepository mockMastRepository;
 
     @Before
-    public void setup() throws Exception {
+    public void setup()  {
         MockitoAnnotations.initMocks(this);
         mContext = RuntimeEnvironment.application.getApplicationContext();
         sut = new MastDataPresenter(mContext, mockMastListView, mockMastRepository);
@@ -72,7 +72,7 @@ public class MastDataPresenterTest {
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void tearDown() {
         sut = null;
         testList.clear();
     }

@@ -1,5 +1,8 @@
 package daveho.co.auntypasty.mastdata.models;
 
+/**
+ * A model for a tenant with mast count item
+ */
 public class TenantMast {
 
     private String tenantName;

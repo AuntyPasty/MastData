@@ -10,11 +10,14 @@ import daveho.co.auntypasty.mastdata.models.TenantMast;
 import daveho.co.auntypasty.mastdata.repository.MastDataRepository;
 import daveho.co.auntypasty.mastdata.views.TenantsView;
 
+/**
+ * Presenter for managing the tenants with mast count data
+ */
 public class TenantMastCountPresenter {
 
-    Context mContext;
-    TenantsView mTenantsView;
-    MastDataRepository mMastDataRepository;
+    private Context mContext;
+    private TenantsView mTenantsView;
+    private MastDataRepository mMastDataRepository;
 
     public TenantMastCountPresenter(Context mContext, TenantsView tenantsView, MastDataRepository mMastDataRepository) {
         this.mContext = mContext;

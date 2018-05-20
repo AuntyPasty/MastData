@@ -11,13 +11,17 @@ import daveho.co.auntypasty.mastdata.models.MastDataItem;
 import daveho.co.auntypasty.mastdata.repository.MastDataRepository;
 import daveho.co.auntypasty.mastdata.views.RentalsView;
 
+/**
+ * Presenter for managing the data within a date range
+ * Also changes date format of entries.
+ */
 public class RentalsPresenter {
 
     private static final String TAG = RentalsPresenter.class.getSimpleName();
 
-    Context mContext;
-    RentalsView mRentalsView;
-    MastDataRepository mMastDataRepository;
+    private Context mContext;
+    private RentalsView mRentalsView;
+    private MastDataRepository mMastDataRepository;
 
     public RentalsPresenter(Context mContext, RentalsView mRentalsView, MastDataRepository mMastDataRepository) {
         this.mContext = mContext;
@@ -32,17 +36,24 @@ public class RentalsPresenter {
     public void showListWithinDateRange() {
 
         ArrayList<MastDataItem> filteredList = getRentalsFromListInDateRange();
-        mRentalsView.showItemsInGivenDaterange(filteredList);
+        mRentalsView.showItemsInGivenDateRange(filteredList);
     }
 
+    /**
+     * Obtains the mast list from the repository
+     * iterates over list and filters out ones within specified date range.
+     * @return filtered list of MastDataItem
+     */
     public ArrayList<MastDataItem> getRentalsFromListInDateRange() {
 
         ArrayList<MastDataItem> mastList = mMastDataRepository.getMastDataList();
         ArrayList<MastDataItem> filteredList = new ArrayList<>();
 
+        // The format of the raw data
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy");
 
         try {
+            // These are specified date boundaries
             Date startDateRange = dateFormat.parse("01 Jun 1999");
             Date endDateRange = dateFormat.parse("31 Aug 2007");
 

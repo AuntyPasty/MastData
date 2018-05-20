@@ -8,6 +8,9 @@ import android.view.View;
 
 import daveho.co.auntypasty.mastdata.R;
 
+/**
+ * Decoration to draw a line between entries in teh list
+ */
 public class ListDividerItemDecoration extends RecyclerView.ItemDecoration {
     private Drawable mDivider;
 
