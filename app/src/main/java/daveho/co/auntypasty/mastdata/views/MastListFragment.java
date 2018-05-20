@@ -31,8 +31,7 @@ public class MastListFragment extends Fragment implements MastListView {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.mast_list_fragment, container, false);
 
-        recyclerView = v.findViewById(R.id.list);
-        //recyclerView.setHasFixedSize(true);
+        recyclerView = v.findViewById(R.id.mast_list);
         recyclerView.addItemDecoration(new ListDividerItemDecoration(getActivity()));
 
         linearLayoutManager = new LinearLayoutManager(getActivity());
@@ -46,19 +45,22 @@ public class MastListFragment extends Fragment implements MastListView {
 
         mMastDataPresenter = new MastDataPresenter(applicationContext(), this, mastDataRepository());
 
-        mMastDataPresenter.getMastListFromStorageToShow();
-
         return v;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        mMastDataPresenter.getMastListFromStorageToShow();
     }
 
     @Override
     public void showTop5MastList(ArrayList<MastDataItem> list) {
 
         mMastList.clear();
-        // We only want to show the first 5 items. We assume the list has been sorted
-        for (int i = 0; i < 5; i++) {
-            mMastList.add(list.get(i));
-        }
+        mMastList.addAll(list);
+
         mMastListViewAdapter.notifyDataSetChanged();
 
     }

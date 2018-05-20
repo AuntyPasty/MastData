@@ -27,7 +27,20 @@ public class MastDataPresenter {
     public void getMastListFromStorageToShow() {
 
         ArrayList<MastDataItem> mastList = mMastDataRepository.getMastDataList();
-        mMastListView.showTop5MastList(mastList);
+
+        mMastListView.showTop5MastList(getTopFiveFromList(mastList));
+    }
+
+    public ArrayList<MastDataItem> getTopFiveFromList(ArrayList<MastDataItem> rawList) {
+        ArrayList<MastDataItem> shortList = new ArrayList<>();
+
+        //TODO sort the list
+        // We only want to show the first 5 items. We assume the list has been sorted
+        for (int i = 0; i < 5; i++) {
+            shortList.add(rawList.get(i));
+        }
+
+        return shortList;
     }
     
 }

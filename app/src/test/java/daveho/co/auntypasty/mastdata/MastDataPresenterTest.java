@@ -15,11 +15,16 @@ import org.robolectric.annotation.Config;
 import java.util.ArrayList;
 import java.util.List;
 
+import daveho.co.auntypasty.mastdata.models.MastDataItem;
 import daveho.co.auntypasty.mastdata.presenters.MastDataPresenter;
 import daveho.co.auntypasty.mastdata.repository.MastDataRepository;
 import daveho.co.auntypasty.mastdata.views.MastListFragment;
 import daveho.co.auntypasty.mastdata.views.RentalsView;
 import daveho.co.auntypasty.mastdata.views.TenantsView;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 
 @RunWith(RobolectricTestRunner.class)
@@ -30,24 +35,18 @@ public class MastDataPresenterTest {
 
     MastDataPresenter sut;
 
-    List<String[]> testData = new ArrayList();
-    String[] testLine1 = {"Property name", "Address 1", "Address 2", "Address 3", "Address 4",
-            "Unit Name", "Tenant Name", "Lease Start Data", "Lease End Data", "Lease Years", "Current Rent"};
+    MastDataItem testItem1 = new MastDataItem();
+    MastDataItem testItem2 = new MastDataItem();
+    MastDataItem testItem3 = new MastDataItem();
+    MastDataItem testItem4 = new MastDataItem();
+    MastDataItem testItem5 = new MastDataItem();
+    MastDataItem testItem6 = new MastDataItem();
+    MastDataItem testItem7 = new MastDataItem();
 
-    String[] testLine2 = {"test1 Property name", "Test1 Address line 1", "test1 Address 2 ", "test1 Address 3", "test1 Address 4",
-            "test1 Unit Name", "test1 Tenant Name", "test1 Lease Start Data", "test1 Lease End Data", "test1 Lease Years", "test1 Current Rent"};
-
-    String[] testLine3 = {"test2 Property name", "test2 Address 1", "test2 Address 2", "test2 Address 3", "test2 Address 4",
-            "test2 Unit Name", "test2 Tenant Name", "test2 Lease Start Data", "test2 Lease End Data", "test2 Lease Years", "test2 Current Rent"};
+    ArrayList<MastDataItem> testList = new ArrayList<>();
 
     @Mock
     private MastListFragment mockMastListView;
-
-    @Mock
-    private TenantsView mockTenantsView;
-
-    @Mock
-    private RentalsView mockRentalsView;
 
     @Mock
     private MastDataRepository mockMastRepository;
@@ -58,21 +57,29 @@ public class MastDataPresenterTest {
         mContext = RuntimeEnvironment.application.getApplicationContext();
         sut = new MastDataPresenter(mContext, mockMastListView, mockMastRepository);
 
-        testData.add(testLine1);
-        testData.add(testLine2);
-        testData.add(testLine3);
+        testList.add(testItem1);
+        testList.add(testItem2);
+        testList.add(testItem3);
+        testList.add(testItem4);
+        testList.add(testItem5);
+        testList.add(testItem6);
+        testList.add(testItem7);
     }
 
     @After
     public void tearDown() throws Exception {
         sut = null;
-        testData.clear();
+        testList.clear();
     }
 
     @Test
-    public void getListShouldReturnListOfObjects() {
-        sut.getMastListFromStorageToShow();
+    public void testGetListToShowContainsMax5items() {
+        when(mockMastRepository.getMastDataList()).thenReturn(testList);
 
-      //  verify(mockMastListView, times(1)).showTop5MastList(anyListOf(MastDataItem.class));
+        ArrayList<MastDataItem> result = sut.getTopFiveFromList(testList);
+
+        assertThat(result.size()).isEqualTo(5);
     }
+
+
 }

@@ -22,9 +22,10 @@ public class TenantMastCountPresenter {
         this.mMastDataRepository = mMastDataRepository;
     }
 
-    public void showTenantsMastCountList() {
+    public void getTenantsMastCountList() {
 
-        //TODO Pass to fragment
+        ArrayList<TenantMast> resultList = createTenantsMastCountList();
+        mTenantsView.showTenantMastCountList(resultList);
     }
 
     public ArrayList<TenantMast> createTenantsMastCountList() {

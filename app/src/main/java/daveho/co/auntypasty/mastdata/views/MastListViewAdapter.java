@@ -58,7 +58,7 @@ public class MastListViewAdapter extends RecyclerView.Adapter<MastListViewAdapte
         return mMastList.size();
     }
 
-    public static class MastViewHolder extends RecyclerView.ViewHolder {
+    static class MastViewHolder extends RecyclerView.ViewHolder {
 
         TextView nameView;
         TextView address1View;

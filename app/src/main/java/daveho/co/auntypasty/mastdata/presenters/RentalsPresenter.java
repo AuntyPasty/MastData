@@ -31,7 +31,8 @@ public class RentalsPresenter {
      */
     public void showListWithinDateRange() {
 
-        //TODO Pass to fragment
+        ArrayList<MastDataItem> filteredList = getRentalsFromListInDateRange();
+        mRentalsView.showItemsInGivenDaterange(filteredList);
     }
 
     public ArrayList<MastDataItem> getRentalsFromListInDateRange() {
@@ -77,7 +78,7 @@ public class RentalsPresenter {
     public MastDataItem convertDatesWithinItem(MastDataItem item) {
 
         SimpleDateFormat oldDateFormat = new SimpleDateFormat("dd MMM yyyy");
-        SimpleDateFormat newDateFormat = new SimpleDateFormat("dd/MM/YYYY");
+        SimpleDateFormat newDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
         try {
             Date date = oldDateFormat.parse(item.getLeaseStart());
