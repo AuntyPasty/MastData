@@ -13,14 +13,11 @@ import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import daveho.co.auntypasty.mastdata.models.MastDataItem;
 import daveho.co.auntypasty.mastdata.presenters.MastDataPresenter;
 import daveho.co.auntypasty.mastdata.repository.MastDataRepository;
 import daveho.co.auntypasty.mastdata.views.MastListFragment;
-import daveho.co.auntypasty.mastdata.views.RentalsView;
-import daveho.co.auntypasty.mastdata.views.TenantsView;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
@@ -57,6 +54,14 @@ public class MastDataPresenterTest {
         mContext = RuntimeEnvironment.application.getApplicationContext();
         sut = new MastDataPresenter(mContext, mockMastListView, mockMastRepository);
 
+        testItem1.setCurrentRent("1.0");
+        testItem2.setCurrentRent("2.0");
+        testItem3.setCurrentRent("3.0");
+        testItem4.setCurrentRent("4.0");
+        testItem5.setCurrentRent("5.0");
+        testItem6.setCurrentRent("6.0");
+        testItem7.setCurrentRent("7.5");
+
         testList.add(testItem1);
         testList.add(testItem2);
         testList.add(testItem3);
@@ -74,12 +79,16 @@ public class MastDataPresenterTest {
 
     @Test
     public void testGetListToShowContainsMax5items() {
-        when(mockMastRepository.getMastDataList()).thenReturn(testList);
-
         ArrayList<MastDataItem> result = sut.getTopFiveFromList(testList);
 
         assertThat(result.size()).isEqualTo(5);
     }
 
+    @Test
+    public void testGetTotalRentFromList() {
 
+        float result = sut.getTotalRentFromList(testList);
+
+        assertThat(result).isEqualTo(28.5f);
+    }
 }

@@ -7,6 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -24,6 +26,9 @@ public class MastListFragment extends Fragment implements MastListView {
     private MastListViewAdapter mMastListViewAdapter;
     private ArrayList<MastDataItem> mMastList = new ArrayList<>();
 
+    private Button sortToggleButton;
+    private TextView rentView;
+
     private MastDataPresenter mMastDataPresenter;
 
     @Override
@@ -32,6 +37,24 @@ public class MastListFragment extends Fragment implements MastListView {
         View v = inflater.inflate(R.layout.mast_list_fragment, container, false);
 
         recyclerView = v.findViewById(R.id.mast_list);
+
+        rentView = v.findViewById(R.id.total_rent);
+
+        sortToggleButton = v.findViewById(R.id.sort_toggle);
+
+        sortToggleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (sortToggleButton.getText().toString().equalsIgnoreCase("Ascending")) {
+                    mMastDataPresenter.getSortedShortList(true);
+                    sortToggleButton.setText("Descending");
+                } else {
+                    mMastDataPresenter.getSortedShortList(false);
+                    sortToggleButton.setText("Ascending");
+                }
+            }
+        });
+
         recyclerView.addItemDecoration(new ListDividerItemDecoration(getActivity()));
 
         linearLayoutManager = new LinearLayoutManager(getActivity());
@@ -63,5 +86,10 @@ public class MastListFragment extends Fragment implements MastListView {
 
         mMastListViewAdapter.notifyDataSetChanged();
 
+    }
+
+    @Override
+    public void showTotalRent(float rent) {
+        rentView.setText(Float.toString(rent));
     }
 }

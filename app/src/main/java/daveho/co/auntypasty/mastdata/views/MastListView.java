@@ -9,5 +9,7 @@ public interface MastListView {
 
     void showTop5MastList(ArrayList<MastDataItem> list);
 
+    void showTotalRent(float rent);
+
 
 }
