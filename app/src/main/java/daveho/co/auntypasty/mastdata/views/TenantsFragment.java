@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,8 @@ import static daveho.co.auntypasty.mastdata.modules.MastDataRepositoryModule.mas
  * Fragment to show teh list of tenants and their mast count.
  */
 public class TenantsFragment extends Fragment implements TenantsView {
+
+    private static final String TAG = TenantsFragment.class.getSimpleName();
 
     protected RecyclerView recyclerView;
     protected LinearLayoutManager linearLayoutManager;
@@ -64,5 +67,10 @@ public class TenantsFragment extends Fragment implements TenantsView {
         mTenantList.clear();
         mTenantList.addAll(list);
         mTenantsListViewAdapter.notifyDataSetChanged();
+    }
+
+    public void updateContents() {
+        Log.d(TAG, "UpdateContents called");
+        mTenantMastCountPresenter.getTenantsMastCountList();
     }
 }

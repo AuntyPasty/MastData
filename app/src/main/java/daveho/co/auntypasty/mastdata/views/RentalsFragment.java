@@ -4,16 +4,15 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import daveho.co.auntypasty.mastdata.R;
 import daveho.co.auntypasty.mastdata.models.MastDataItem;
-import daveho.co.auntypasty.mastdata.presenters.MastDataPresenter;
 import daveho.co.auntypasty.mastdata.presenters.RentalsPresenter;
 
 import static daveho.co.auntypasty.mastdata.modules.ApplicationModule.applicationContext;
@@ -23,6 +22,8 @@ import static daveho.co.auntypasty.mastdata.modules.MastDataRepositoryModule.mas
  * Fragment to show the list of items within the required date range
  */
 public class RentalsFragment extends Fragment implements RentalsView {
+
+    private static final String TAG = RentalsFragment.class.getSimpleName();
 
     protected RecyclerView recyclerView;
     protected LinearLayoutManager linearLayoutManager;
@@ -68,5 +69,10 @@ public class RentalsFragment extends Fragment implements RentalsView {
         mMastList.addAll(list);
 
         mMastListViewAdapter.notifyDataSetChanged();
+    }
+
+    public void updateContents() {
+        Log.d(TAG, "UpdateContents called");
+        mRentalsPresenter.showListWithinDateRange();
     }
 }

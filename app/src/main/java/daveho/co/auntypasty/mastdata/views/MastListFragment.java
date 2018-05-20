@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,8 @@ import static daveho.co.auntypasty.mastdata.modules.MastDataRepositoryModule.mas
  * toggle button to change the ordering of the list
  */
 public class MastListFragment extends Fragment implements MastListView {
+
+    private static final String TAG = MastListFragment.class.getSimpleName();
 
     protected RecyclerView recyclerView;
     protected LinearLayoutManager linearLayoutManager;
@@ -95,5 +98,10 @@ public class MastListFragment extends Fragment implements MastListView {
     @Override
     public void showTotalRent(float rent) {
         rentView.setText("Total Rent: " + Float.toString(rent));
+    }
+
+    public void updateContents() {
+        Log.d(TAG, "UpdateContents called");
+        mMastDataPresenter.getMastListFromStorageToShow();
     }
 }

@@ -4,7 +4,7 @@ The app parses data from an internal csv file placed in the assets folder.
 The data is then formatted and presented in a number of fragments depending on the requirements.
 
 The general idea was to create an app trying to adhere to the MVP architecture. Using RXJava would
-have been a bonus.
+have been a bonus but did not come about.
 
 An app was created from the Android Studio new App wizard. The tabbed activity seemed appropriate.
 
@@ -18,9 +18,8 @@ A lot of time was spent trying to get the lists displaying in the fragments. The
 to be sorted in the UI code. A different presenter was used for each fragment. Originally I
 intended to use one. A dialogFragment was used for new Mast submission.
 
-The UI is poor but functional. It has not been tested for robustness. The app meets nearly all
-given requirements. The only outstanding issue at the moment is the fragments are not refreshed
-after a new entry has been submitted.
+The UI is poor but functional. The app has not been tested for robustness, particularly the new
+mast data submissions. The app meets nearly all given requirements.
 
 Unit tests are JUnit tests using RoboElectric and Mockito. The testing was ok but coverage could
 be better. There should be more test cases for boundary conditions.

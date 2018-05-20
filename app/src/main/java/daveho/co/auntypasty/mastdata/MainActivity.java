@@ -45,6 +45,10 @@ public class MainActivity extends AppCompatActivity implements SubmitNewMastList
      */
     private ViewPager mViewPager;
 
+    private MastListFragment mMastListFragment;
+    private RentalsFragment mRentalsFragment;
+    private TenantsFragment mTenantsFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,11 +108,29 @@ public class MainActivity extends AppCompatActivity implements SubmitNewMastList
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        mMastListFragment = null;
+        mRentalsFragment = null;
+        mTenantsFragment = null;
+    }
+
+    @Override
     public void onSubmitMast(MastDataItem item) {
         // A new mast has been submitted. Put it in the repository
         mastDataRepository().addNewMast(item);
 
-        //We should get the presenters to refresh somehow.
+        //Refresh the fragment
+        if (mMastListFragment != null) {
+            mMastListFragment.updateContents();
+        }
+        if (mTenantsFragment != null) {
+            mTenantsFragment.updateContents();
+        }
+        if (mRentalsFragment != null) {
+            mRentalsFragment.updateContents();
+        }
     }
 
     /**
@@ -124,21 +146,29 @@ public class MainActivity extends AppCompatActivity implements SubmitNewMastList
         @Override
         public Fragment getItem(int position) {
 
-            Fragment fragment;
-
             if (position == 0) {
-                fragment = new MastListFragment();
+                if (mMastListFragment == null) {
+                    mMastListFragment = new MastListFragment();
+                }
+                return mMastListFragment;
             } else if (position == 1) {
-                fragment = new TenantsFragment();
+                if (mTenantsFragment == null) {
+                    mTenantsFragment = new TenantsFragment();
+                }
+                return mTenantsFragment;
             } else if (position == 2) {
-                fragment = new RentalsFragment();
+                if (mRentalsFragment == null) {
+                    mRentalsFragment = new RentalsFragment();
+                }
+                return mRentalsFragment;
             }
             else {
                 Log.e(TAG, "Page Out of range.");
-                fragment = new MastListFragment();
+                if (mMastListFragment == null) {
+                    mMastListFragment = new MastListFragment();
+                }
+                return mMastListFragment;
             }
-
-            return fragment;
         }
 
         @Override
