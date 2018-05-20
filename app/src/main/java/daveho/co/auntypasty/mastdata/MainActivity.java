@@ -16,12 +16,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import java.util.List;
-
-import daveho.co.auntypasty.mastdata.models.MastDataItem;
 import daveho.co.auntypasty.mastdata.modules.ApplicationModule;
+import daveho.co.auntypasty.mastdata.presenters.MastDataPresenter;
 import daveho.co.auntypasty.mastdata.views.MastListFragment;
-import daveho.co.auntypasty.mastdata.views.MastListView;
 import daveho.co.auntypasty.mastdata.views.RentalsFragment;
 import daveho.co.auntypasty.mastdata.views.TenantsFragment;
 

@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
-import daveho.co.auntypasty.mastdata.MastDataPresenter;
+import daveho.co.auntypasty.mastdata.presenters.MastDataPresenter;
 import daveho.co.auntypasty.mastdata.R;
 import daveho.co.auntypasty.mastdata.models.MastDataItem;
 

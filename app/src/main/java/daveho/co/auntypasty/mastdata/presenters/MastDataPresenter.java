@@ -1,4 +1,4 @@
-package daveho.co.auntypasty.mastdata;
+package daveho.co.auntypasty.mastdata.presenters;
 
 import android.content.Context;
 
