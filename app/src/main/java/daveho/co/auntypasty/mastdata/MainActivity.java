@@ -16,13 +16,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import daveho.co.auntypasty.mastdata.models.MastDataItem;
 import daveho.co.auntypasty.mastdata.modules.ApplicationModule;
 import daveho.co.auntypasty.mastdata.presenters.MastDataPresenter;
 import daveho.co.auntypasty.mastdata.views.MastListFragment;
+import daveho.co.auntypasty.mastdata.views.NewMastDataFragment;
 import daveho.co.auntypasty.mastdata.views.RentalsFragment;
+import daveho.co.auntypasty.mastdata.views.SubmitNewMastListener;
 import daveho.co.auntypasty.mastdata.views.TenantsFragment;
 
-public class MainActivity extends AppCompatActivity {
+import static daveho.co.auntypasty.mastdata.modules.MastDataRepositoryModule.mastDataRepository;
+
+public class MainActivity extends AppCompatActivity implements SubmitNewMastListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
     /**
@@ -39,12 +44,6 @@ public class MainActivity extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
-
-    private MastListFragment mMastListFragment;
-    private RentalsFragment mRentalsFragment;
-    private TenantsFragment mTenantsFragment;
-
-    private MastDataPresenter mMastDataPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,8 +72,10 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                NewMastDataFragment newMastDataFragment = new NewMastDataFragment();
+
+                newMastDataFragment.show(fragmentManager, "new_mast_data_fragment");
             }
         });
     }
@@ -102,6 +103,14 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onSubmitMast(MastDataItem item) {
+        // A new mast has been submitted. Put it in the repository
+        mastDataRepository().addNewMast(item);
+
+        //We should get the presenters to refresh somehow.
+    }
+
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
@@ -125,8 +134,7 @@ public class MainActivity extends AppCompatActivity {
                 fragment = new RentalsFragment();
             }
             else {
-                // TODO Should never get here but maybe show snackbar error if have time.
-                Log.d(TAG, "Page Out of range.");
+                Log.e(TAG, "Page Out of range.");
                 fragment = new MastListFragment();
             }
 

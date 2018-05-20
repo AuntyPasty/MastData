@@ -74,4 +74,8 @@ public class MastDataRepository {
 
         return result;
     }
+
+    public void addNewMast(MastDataItem item) {
+        mMastDataList.add(item);
+    }
 }
