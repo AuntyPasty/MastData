@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:layout_weight="1"
-
+                android:hint="required"
                 android:gravity="center"
                 android:padding="10dp"
                 android:textColor="@android:color/black"
@@ -189,7 +189,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_weight="1"
-
+                android:hint="required."
                 android:padding="10dp"
                 android:textColor="@android:color/black"
                 android:textSize="12sp"/>
@@ -215,7 +215,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_weight="1"
-
+                android:hint="required. dd MMM yyyy"
                 android:padding="10dp"
                 android:textColor="@android:color/black"
                 android:textSize="12sp"/>
@@ -241,7 +241,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_weight="1"
-
+                android:hint="required. dd MMM yyyy"
                 android:padding="10dp"
                 android:textColor="@android:color/black"
                 android:textSize="12sp"/>
@@ -293,7 +293,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_weight="1"
-
+                android:hint="required number"
                 android:padding="10dp"
                 android:textColor="@android:color/black"
                 android:textSize="12sp"/>

@@ -1,8 +1,9 @@
 package daveho.co.auntypasty.mastdata;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -18,7 +19,8 @@ import android.view.View;
 
 import daveho.co.auntypasty.mastdata.models.MastDataItem;
 import daveho.co.auntypasty.mastdata.modules.ApplicationModule;
-import daveho.co.auntypasty.mastdata.presenters.MastDataPresenter;
+import daveho.co.auntypasty.mastdata.views.MastDataSubmissionView;
+import daveho.co.auntypasty.mastdata.presenters.MastSubmissionPresenter;
 import daveho.co.auntypasty.mastdata.views.MastListFragment;
 import daveho.co.auntypasty.mastdata.views.NewMastDataFragment;
 import daveho.co.auntypasty.mastdata.views.RentalsFragment;
@@ -27,7 +29,7 @@ import daveho.co.auntypasty.mastdata.views.TenantsFragment;
 
 import static daveho.co.auntypasty.mastdata.modules.MastDataRepositoryModule.mastDataRepository;
 
-public class MainActivity extends AppCompatActivity implements SubmitNewMastListener {
+public class MainActivity extends AppCompatActivity implements SubmitNewMastListener, MastDataSubmissionView {
 
     private static final String TAG = MainActivity.class.getSimpleName();
     /**
@@ -48,6 +50,8 @@ public class MainActivity extends AppCompatActivity implements SubmitNewMastList
     private MastListFragment mMastListFragment;
     private RentalsFragment mRentalsFragment;
     private TenantsFragment mTenantsFragment;
+
+    private MastSubmissionPresenter mMastSubmissionPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +86,8 @@ public class MainActivity extends AppCompatActivity implements SubmitNewMastList
                 newMastDataFragment.show(fragmentManager, "new_mast_data_fragment");
             }
         });
+
+        mMastSubmissionPresenter = new MastSubmissionPresenter(this, mastDataRepository());
     }
 
 
@@ -118,8 +124,8 @@ public class MainActivity extends AppCompatActivity implements SubmitNewMastList
 
     @Override
     public void onSubmitMast(MastDataItem item) {
-        // A new mast has been submitted. Put it in the repository
-        mastDataRepository().addNewMast(item);
+        // A new mast has been submitted.
+        mMastSubmissionPresenter.addNewMastData(item);
 
         //Refresh the fragment
         if (mMastListFragment != null) {
@@ -131,6 +137,28 @@ public class MainActivity extends AppCompatActivity implements SubmitNewMastList
         if (mRentalsFragment != null) {
             mRentalsFragment.updateContents();
         }
+    }
+
+    @Override
+    public void notifySubmissionResult(boolean success) {
+
+        String alertMessage;
+
+        if (success) {
+            alertMessage = "Your data has been successfully submitted";
+        }
+        else {
+            alertMessage = "There was a problem with your data submission. PLease ensure all required fields are completed and of the correct format";
+        }
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Mast Submission");
+        builder.setMessage(alertMessage);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //Do nothing
+            }
+        }).show();
     }
 
     /**

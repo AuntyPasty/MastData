@@ -99,10 +99,10 @@ public class RentalsPresenter {
             item.setLeaseEnd(newDateFormat.format(date));
         }
         catch (Exception e) {
-            Log.e(TAG, "problem converting date formats. " + e.getLocalizedMessage());
+            Log.e(TAG, "Problem converting date formats. " + e.getLocalizedMessage());
+            return item;
         }
 
         return item;
-
     }
 }
