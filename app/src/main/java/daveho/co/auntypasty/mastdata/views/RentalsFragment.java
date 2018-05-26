@@ -15,9 +15,6 @@ import daveho.co.auntypasty.mastdata.R;
 import daveho.co.auntypasty.mastdata.models.MastDataItem;
 import daveho.co.auntypasty.mastdata.presenters.RentalsPresenter;
 
-import static daveho.co.auntypasty.mastdata.modules.ApplicationModule.applicationContext;
-import static daveho.co.auntypasty.mastdata.modules.MastDataRepositoryModule.mastDataRepository;
-
 /**
  * Fragment to show the list of items within the required date range
  */
@@ -51,7 +48,7 @@ public class RentalsFragment extends Fragment implements RentalsView {
         }
         recyclerView.setAdapter(mMastListViewAdapter);
 
-        mRentalsPresenter = new RentalsPresenter(applicationContext(), this, mastDataRepository());
+        mRentalsPresenter = new RentalsPresenter(this);
 
         return v;
     }

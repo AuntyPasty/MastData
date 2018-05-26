@@ -16,7 +16,6 @@ import daveho.co.auntypasty.mastdata.models.TenantMast;
 import daveho.co.auntypasty.mastdata.presenters.TenantMastCountPresenter;
 
 import static daveho.co.auntypasty.mastdata.modules.ApplicationModule.applicationContext;
-import static daveho.co.auntypasty.mastdata.modules.MastDataRepositoryModule.mastDataRepository;
 
 /**
  * Fragment to show teh list of tenants and their mast count.
@@ -50,7 +49,7 @@ public class TenantsFragment extends Fragment implements TenantsView {
         }
         recyclerView.setAdapter(mTenantsListViewAdapter);
 
-        mTenantMastCountPresenter = new TenantMastCountPresenter(applicationContext(), this, mastDataRepository());
+        mTenantMastCountPresenter = new TenantMastCountPresenter( this);
 
         return v;
     }

@@ -1,6 +1,6 @@
 package daveho.co.auntypasty.mastdata.presenters;
 
-import android.content.Context;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,6 +10,8 @@ import daveho.co.auntypasty.mastdata.repository.MastDataRepository;
 import daveho.co.auntypasty.mastdata.views.MastListFragment;
 import daveho.co.auntypasty.mastdata.views.MastListView;
 
+import static daveho.co.auntypasty.mastdata.modules.MastDataRepositoryModule.mastDataRepository;
+
 /**
  * Presenter for managing the lists of mast data items
  */
@@ -17,14 +19,16 @@ public class MastDataPresenter {
 
     private static final String TAG = MastDataPresenter.class.getSimpleName();
 
-    private Context mContext;
     private MastListView mMastListView;
     private MastDataRepository mMastDataRepository;
 
     private ArrayList<MastDataItem> mShortMastList = new ArrayList<>();
 
-    public MastDataPresenter(Context context, MastListFragment mastListView, MastDataRepository mastDataRepository) {
-        this.mContext = context;
+    public MastDataPresenter(MastListFragment mastListView) {
+        this(mastListView, mastDataRepository());
+    }
+
+    public MastDataPresenter(MastListFragment mastListView, MastDataRepository mastDataRepository) {
         this.mMastListView = mastListView;
         this.mMastDataRepository = mastDataRepository;
     }
@@ -58,6 +62,7 @@ public class MastDataPresenter {
         // We only want to show the first 5 items. We assume the list has been sorted
         for (int i = 0; i < 5; i++) {
             shortList.add(rawList.get(i));
+            Log.d(TAG, "Added to shortList");
         }
 
         mShortMastList = shortList;
