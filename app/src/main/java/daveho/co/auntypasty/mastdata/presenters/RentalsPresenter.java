@@ -1,6 +1,5 @@
 package daveho.co.auntypasty.mastdata.presenters;
 
-import android.content.Context;
 import android.util.Log;
 
 import java.text.SimpleDateFormat;
@@ -11,6 +10,8 @@ import daveho.co.auntypasty.mastdata.models.MastDataItem;
 import daveho.co.auntypasty.mastdata.repository.MastDataRepository;
 import daveho.co.auntypasty.mastdata.views.RentalsView;
 
+import static daveho.co.auntypasty.mastdata.modules.MastDataRepositoryModule.mastDataRepository;
+
 /**
  * Presenter for managing the data within a date range
  * Also changes date format of entries.
@@ -19,14 +20,15 @@ public class RentalsPresenter {
 
     private static final String TAG = RentalsPresenter.class.getSimpleName();
 
-    private Context mContext;
     private RentalsView mRentalsView;
     private MastDataRepository mMastDataRepository;
 
-    public RentalsPresenter(Context mContext, RentalsView mRentalsView, MastDataRepository mMastDataRepository) {
-        this.mContext = mContext;
-        this.mRentalsView = mRentalsView;
-        this.mMastDataRepository = mMastDataRepository;
+    public RentalsPresenter(RentalsView rentalsView) {
+        this(rentalsView, mastDataRepository());
+    }
+    public RentalsPresenter(RentalsView rentalsView, MastDataRepository mastDataRepository) {
+        this.mRentalsView = rentalsView;
+        this.mMastDataRepository = mastDataRepository;
     }
 
     /**

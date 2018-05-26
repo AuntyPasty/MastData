@@ -9,6 +9,8 @@ import daveho.co.auntypasty.mastdata.models.MastDataItem;
 import daveho.co.auntypasty.mastdata.repository.MastDataRepository;
 import daveho.co.auntypasty.mastdata.views.MastDataSubmissionView;
 
+import static daveho.co.auntypasty.mastdata.modules.MastDataRepositoryModule.mastDataRepository;
+
 /**
  * Responsible for validating a mast submission, adding to the respository and notifying the view of the results.
  */
@@ -19,6 +21,9 @@ public class MastSubmissionPresenter {
     private MastDataSubmissionView mMastDataSubmissionView;
     private MastDataRepository mMastDataRepository;
 
+    public MastSubmissionPresenter(MastDataSubmissionView mastDataSubmissionView) {
+        this(mastDataSubmissionView, mastDataRepository());
+    }
     public MastSubmissionPresenter(MastDataSubmissionView mastDataSubmissionView, MastDataRepository mMastDataRepository) {
         this.mMastDataSubmissionView = mastDataSubmissionView;
         this.mMastDataRepository = mMastDataRepository;

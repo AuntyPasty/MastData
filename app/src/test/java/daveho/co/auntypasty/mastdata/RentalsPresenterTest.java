@@ -1,7 +1,5 @@
 package daveho.co.auntypasty.mastdata;
 
-import android.content.Context;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,7 +7,6 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.robolectric.RobolectricTestRunner;
-import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 
 import java.util.ArrayList;
@@ -26,7 +23,6 @@ import static org.mockito.Mockito.when;
 @Config(manifest=Config.NONE)
 public class RentalsPresenterTest {
 
-    private Context mContext;
     private RentalsPresenter sut;
 
     private MastDataItem testItem1 = new MastDataItem();
@@ -47,9 +43,7 @@ public class RentalsPresenterTest {
     public void setup() {
         MockitoAnnotations.initMocks(this);
 
-        mContext = RuntimeEnvironment.application.getApplicationContext();
-
-        sut = new RentalsPresenter(mContext, mockView, mockMastRepository);
+        sut = new RentalsPresenter(mockView, mockMastRepository);
     }
 
     @After

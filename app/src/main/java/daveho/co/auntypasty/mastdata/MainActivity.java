@@ -27,8 +27,6 @@ import daveho.co.auntypasty.mastdata.views.RentalsFragment;
 import daveho.co.auntypasty.mastdata.views.SubmitNewMastListener;
 import daveho.co.auntypasty.mastdata.views.TenantsFragment;
 
-import static daveho.co.auntypasty.mastdata.modules.MastDataRepositoryModule.mastDataRepository;
-
 public class MainActivity extends AppCompatActivity implements SubmitNewMastListener, MastDataSubmissionView {
 
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -87,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements SubmitNewMastList
             }
         });
 
-        mMastSubmissionPresenter = new MastSubmissionPresenter(this, mastDataRepository());
+        mMastSubmissionPresenter = new MastSubmissionPresenter(this);
     }
 
 

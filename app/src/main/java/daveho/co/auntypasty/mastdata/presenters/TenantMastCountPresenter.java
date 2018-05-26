@@ -1,7 +1,5 @@
 package daveho.co.auntypasty.mastdata.presenters;
 
-import android.content.Context;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -10,19 +8,22 @@ import daveho.co.auntypasty.mastdata.models.TenantMast;
 import daveho.co.auntypasty.mastdata.repository.MastDataRepository;
 import daveho.co.auntypasty.mastdata.views.TenantsView;
 
+import static daveho.co.auntypasty.mastdata.modules.MastDataRepositoryModule.mastDataRepository;
+
 /**
  * Presenter for managing the tenants with mast count data
  */
 public class TenantMastCountPresenter {
 
-    private Context mContext;
     private TenantsView mTenantsView;
     private MastDataRepository mMastDataRepository;
 
-    public TenantMastCountPresenter(Context mContext, TenantsView tenantsView, MastDataRepository mMastDataRepository) {
-        this.mContext = mContext;
+    public TenantMastCountPresenter(TenantsView tenantsView) {
+        this(tenantsView, mastDataRepository());
+    }
+    public TenantMastCountPresenter(TenantsView tenantsView, MastDataRepository mastDataRepository) {
         this.mTenantsView = tenantsView;
-        this.mMastDataRepository = mMastDataRepository;
+        this.mMastDataRepository = mastDataRepository;
     }
 
     public void getTenantsMastCountList() {

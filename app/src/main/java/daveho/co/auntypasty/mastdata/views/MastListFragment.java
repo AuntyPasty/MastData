@@ -17,9 +17,6 @@ import daveho.co.auntypasty.mastdata.presenters.MastDataPresenter;
 import daveho.co.auntypasty.mastdata.R;
 import daveho.co.auntypasty.mastdata.models.MastDataItem;
 
-import static daveho.co.auntypasty.mastdata.modules.ApplicationModule.applicationContext;
-import static daveho.co.auntypasty.mastdata.modules.MastDataRepositoryModule.mastDataRepository;
-
 /**
  * Fragment to display the main mast data list. Only the top 5
  * items are required. Also displays teh total rent of the top five items and a
@@ -74,7 +71,7 @@ public class MastListFragment extends Fragment implements MastListView {
         }
         recyclerView.setAdapter(mMastListViewAdapter);
 
-        mMastDataPresenter = new MastDataPresenter(applicationContext(), this, mastDataRepository());
+        mMastDataPresenter = new MastDataPresenter(this);
 
         return v;
     }
